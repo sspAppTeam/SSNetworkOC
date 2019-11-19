@@ -1,0 +1,14 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'SSNetworkOC_Example' do
+  pod 'SSNetworkOC', :path => '../'
+
+  target 'SSNetworkOC_Tests' do
+    inherit! :search_paths
+
+    pod 'Kiwi'
+    pod 'FBSnapshotTestCase'
+  end
+end

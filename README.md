@@ -1,0 +1,29 @@
+# SSNetworkOC
+
+[![CI Status](https://img.shields.io/travis/SSPSource/SSNetworkOC.svg?style=flat)](https://travis-ci.org/SSPSource/SSNetworkOC)
+[![Version](https://img.shields.io/cocoapods/v/SSNetworkOC.svg?style=flat)](https://cocoapods.org/pods/SSNetworkOC)
+[![License](https://img.shields.io/cocoapods/l/SSNetworkOC.svg?style=flat)](https://cocoapods.org/pods/SSNetworkOC)
+[![Platform](https://img.shields.io/cocoapods/p/SSNetworkOC.svg?style=flat)](https://cocoapods.org/pods/SSNetworkOC)
+
+## Example
+
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+## Requirements
+
+## Installation
+
+SSNetworkOC is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod 'SSNetworkOC'
+```
+
+## Author
+
+SSPSource, 2316585240@qq.com
+
+## License
+
+SSNetworkOC is available under the MIT license. See the LICENSE file for more info.
