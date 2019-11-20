@@ -21,6 +21,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		6C44BA9623840F5600CDFEA8 /* BusinessNetAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C44BA9523840F5600CDFEA8 /* BusinessNetAPI.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		F2646AC2A355695F121310F8 /* Pods_SSNetworkOC_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F7B91F1BF4D968E1BCC753 /* Pods_SSNetworkOC_Example.framework */; };
@@ -37,9 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0FA6B933827F9F8C9718E666 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		25FEC82475B97EEDD713FA3C /* SSNetworkOC.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = SSNetworkOC.podspec; path = ../SSNetworkOC.podspec; sourceTree = "<group>"; };
-		3BA371C3832390E2A66ACFE5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		0FA6B933827F9F8C9718E666 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		25FEC82475B97EEDD713FA3C /* SSNetworkOC.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SSNetworkOC.podspec; path = ../SSNetworkOC.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		3BA371C3832390E2A66ACFE5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		5EDD05F1CD422730B958BEC0 /* Pods-SSNetworkOC_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSNetworkOC_Tests.release.xcconfig"; path = "Target Support Files/Pods-SSNetworkOC_Tests/Pods-SSNetworkOC_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* SSNetworkOC_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSNetworkOC_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -60,6 +61,8 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		6C44BA9423840F5600CDFEA8 /* BusinessNetAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessNetAPI.h; sourceTree = "<group>"; };
+		6C44BA9523840F5600CDFEA8 /* BusinessNetAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessNetAPI.m; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		89E1BFBE5FC0287C2965F34F /* Pods-SSNetworkOC_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSNetworkOC_Tests.debug.xcconfig"; path = "Target Support Files/Pods-SSNetworkOC_Tests/Pods-SSNetworkOC_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +135,8 @@
 		6003F593195388D20070C39A /* Example for SSNetworkOC */ = {
 			isa = PBXGroup;
 			children = (
+				6C44BA9423840F5600CDFEA8 /* BusinessNetAPI.h */,
+				6C44BA9523840F5600CDFEA8 /* BusinessNetAPI.m */,
 				6003F59C195388D20070C39A /* SSAppDelegate.h */,
 				6003F59D195388D20070C39A /* SSAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -193,7 +198,6 @@
 				89E1BFBE5FC0287C2965F34F /* Pods-SSNetworkOC_Tests.debug.xcconfig */,
 				5EDD05F1CD422730B958BEC0 /* Pods-SSNetworkOC_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -249,6 +253,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = SSPSource;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = 57FD26NT87;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -259,6 +266,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -367,10 +375,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SSNetworkOC_Example/Pods-SSNetworkOC_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/SSNetworkOC/SSNetworkOC.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSNetworkOC.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C44BA9623840F5600CDFEA8 /* BusinessNetAPI.m in Sources */,
 				6003F59E195388D20070C39A /* SSAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* SSViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
@@ -515,6 +526,7 @@
 			baseConfigurationReference = EA0B2EBB7582AF0F1EF1DD49 /* Pods-SSNetworkOC_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 57FD26NT87;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SSNetworkOC/SSNetworkOC-Prefix.pch";
 				INFOPLIST_FILE = "SSNetworkOC/SSNetworkOC-Info.plist";
@@ -531,6 +543,7 @@
 			baseConfigurationReference = 9D09952ADA317D18B74E5323 /* Pods-SSNetworkOC_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 57FD26NT87;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SSNetworkOC/SSNetworkOC-Prefix.pch";
 				INFOPLIST_FILE = "SSNetworkOC/SSNetworkOC-Info.plist";

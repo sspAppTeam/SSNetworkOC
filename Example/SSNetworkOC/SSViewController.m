@@ -7,6 +7,7 @@
 //
 
 #import "SSViewController.h"
+#import "BusinessNetAPI.h"
 
 @interface SSViewController ()
 
@@ -17,7 +18,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    NSDictionary *paraDic=@{@"username":@"",@"password":@""};
+    [BusinessNetAPI GET:R_authservice_login parameters:paraDic success:^(id  _Nullable response) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+                               
+                                      
+                                     });
+    } failure:^(NSError * _Nullable error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+                               
+                                      
+                                     });
+    }];
+	
 }
 
 - (void)didReceiveMemoryWarning
