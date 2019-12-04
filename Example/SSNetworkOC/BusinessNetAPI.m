@@ -12,17 +12,13 @@
 
 #if DevelopSever
 /** 接口前缀-开发服务器*/
-//NSString *const kApiPrefix = @"http://101.37.24.52:19551";
-//NSString *const kApiPrefix = @"http://112.233.243.245:8008/api/";
-//NSString *const kApiPrefix = @"http://47.110.125.71:8014/api/";
-
-//NSString *const kApiPrefix = @"http://221.226.116.70:19600";
+NSString *const kApiPrefix = @"http://47.110.125.71:8015/api/";
 #elif TestSever
 /** 接口前缀-测试服务器*/
-NSString *const kApiPrefix = @"https://www.baidu.com";
+NSString *const kApiPrefix = @"http://47.110.125.71:8015/api/";
 #elif ProductSever
 /** 接口前缀-生产服务器*/
-NSString *const kApiPrefix = @"https://www.baidu.com";
+NSString *const kApiPrefix = @"http://47.110.125.71:8015/api/";
 #endif
 
 
@@ -56,15 +52,13 @@ NSString *const kApiPrefix = @"https://www.baidu.com";
 //    统一参数    统一请求头   统一参数格式
 +(id)publickReqConfig:(id)parameters{
     [super publickReqConfig:parameters];
+    [SSNetworkConfig sharedConfig].baseUrl=kApiPrefix;
+    [[SSNetManager sharedAgent] setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [[SSNetManager sharedAgent] setRequestSerializer:SSRequestSerializerJSON];
 //    NSString *token=kGlobalManager.loginUserInfo.Token;
 //    [[SSNetManager sharedAgent] setValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
-     [[SSNetManager sharedAgent] setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-//      [[SSNetManager sharedAgent] setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
- 
    
-//    根据实际业务增加公共参数
-//   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:aUrl]];    [request setValue:@"Bearer auth:token:eyJhbGciOiJIUzUxMiJ9.eyJ5ZWEiOiJjc3poIiwiZXhwIjoxNTcyMzk4NDg0LCJjcmVhdGVkIjoxNTcyMzM4NDg0OTQ0fQ.3KjzpaLAhxBjVTAh6Vio8dNIcGqMUuzQYoGGxoAZ887fp0A6mSb2hCcavEfIzJXiNB1yLrpLwXQhHIklNuYqhg" forHTTPHeaderField:@"Authorization"];
-//    [SSNetworkConfig sharedConfig].baseUrl=kGlobalManager.XUrl;
+
     return parameters;
 }
 // 根据实际业务，处理response业务数据

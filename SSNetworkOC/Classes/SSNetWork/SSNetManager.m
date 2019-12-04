@@ -45,7 +45,7 @@
         _manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:nil];
         _manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         _manager.responseSerializer.acceptableStatusCodes = _allStatusCodes;
-        _manager.completionQueue = _processingQueue;
+//        _manager.completionQueue = _processingQueue;
         
     }
     return self;
@@ -118,6 +118,28 @@
                             failure:(SSHttpRequestFailed)failure{
     NSAssert(URLString, @"请求地址不能为空");
     NetLog(@"\n****************POST**********************\n URL= %@  \n PARAM= %@\n*******************POST*******************",URLString,parameters);
+    NSURLSessionTask *sessionTask = [_manager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        success ? success(responseObject) : nil;
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure ? failure(error) : nil;
+        
+    }];
+    
+    
+    return sessionTask;
+    
+    
+}
+- (__kindof NSURLSessionTask *)PUT:(NSString *)URLString
+                         parameters:(id)parameters
+                            success:(SSHttpRequestSuccess)success
+                            failure:(SSHttpRequestFailed)failure{
+    NSAssert(URLString, @"请求地址不能为空");
+    NetLog(@"\n****************PUT**********************\n URL= %@  \n PARAM= %@\n*******************PUT*******************",URLString,parameters);
     NSURLSessionTask *sessionTask = [_manager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

@@ -61,7 +61,7 @@
 //    统一参数    统一请求头   统一参数格式
 +(id)publickReqConfig:(id)parameters{
     [[SSNetManager sharedAgent] setRequestTimeoutInterval:SSDefautetimeoutInterval];
-    [[SSNetManager sharedAgent] setRequestSerializer:SSRequestSerializerJSON];
+//    [[SSNetManager sharedAgent] setRequestSerializer:SSRequestSerializerJSON];
     return parameters;
 }
 + (id)analyseResponseSuccess:(id)data{
@@ -116,9 +116,9 @@
          resultData = [self analyseResponseFailure:requestError];
         failure(resultData);
     }
-    NSString * resultString = [[NSString alloc]initWithData:resultData encoding:NSUTF8StringEncoding];
-    NSString *paraString =  [[NSString alloc]initWithData:task.currentRequest.HTTPBody encoding:NSUTF8StringEncoding];
-      NetLog(@"\n**************************************\n网络 URL= %@ \n METHOD=%@ \n HTTPBody=%@ \n RESPONSE= %@\n**************************************",task.currentRequest.URL,task.currentRequest.HTTPMethod,paraString,resultString);
+   
+   
+      NetLog(@"\n**************************************\n网络 URL= %@ \n METHOD=%@ \n RESPONSE= %@\n**************************************",task.currentRequest.URL,task.currentRequest.HTTPMethod,[self jsonStringWithDictionary:dicResp]);
     
 }
 
@@ -146,6 +146,22 @@
     validationError =[[NSError alloc] initWithDomain:@"数据解析错误" code:0X1000 userInfo:nil];
     *error = validationError;
     return nil;
+}
+
+// dict字典转json字符串
++ (NSString *)jsonStringWithDictionary:(NSDictionary *)dict
+{
+    if (dict && 0 != dict.count)
+    {
+        NSError *error = nil;
+        // NSJSONWritingOptions 是"NSJSONWritingPrettyPrinted"的话有换位符\n；是"0"的话没有换位符\n。
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&error];
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        return jsonString;
+    }
+    
+    return nil;
+
 }
 
 @end

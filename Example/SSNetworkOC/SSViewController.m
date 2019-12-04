@@ -18,19 +18,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSDictionary *paraDic=@{@"username":@"",@"password":@""};
-    [BusinessNetAPI GET:R_authservice_login parameters:paraDic success:^(id  _Nullable response) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-                               
-                                      
-                                     });
-    } failure:^(NSError * _Nullable error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-                               
-                                      
-                                     });
-    }];
+    UIButton *btn=[[UIButton alloc] initWithFrame:CGRectMake(0, 100, 100, 50)];
+    [btn setBackgroundColor:[UIColor redColor]];
+    [btn addTarget:self action:@selector(reqbase) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+   
 	
+}
+-(void)reqbase{
+     NSDictionary *paraDic=@{@"username":@"cszh",@"password":@"123456"};
+    [BusinessNetAPI GET:R_authservice_login parameters:paraDic success:^(id  _Nullable response) {
+          
+       } failure:^(NSError * _Nullable error) {
+            NSLog(@"==dsd current==%@===%@",[NSThread currentThread],[NSThread mainThread]);
+           
+       }];
 }
 
 - (void)didReceiveMemoryWarning
