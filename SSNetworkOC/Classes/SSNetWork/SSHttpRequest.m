@@ -87,7 +87,7 @@
 //    if (![code isEqualToString:[SSNetworkConfig sharedConfig].net_resp_succ_code]) {
 //        validationError=[[NSError alloc] initWithDomain:[code intValue] == 3?@"参数有误，参数为空":@"接口调用失败" code:[code intValue] userInfo:nil];
 //    }
-    
+    NSHTTPURLResponse *responses = (NSHTTPURLResponse *)task.response;
     
     if (serializationError) {
         succeed = NO;
@@ -100,10 +100,11 @@
         
     }else
     {
-        if ([dicResp objectForKey:@"code"] && [dicResp objectForKey:@"message"]) {
-               succeed = NO;
-               requestError = [[NSError alloc] initWithDomain:[dicResp objectForKey:@"message"] code:[[dicResp objectForKey:@"code"] intValue] userInfo:nil];;
-          }
+       if ([dicResp objectForKey:@"code"] && [dicResp objectForKey:@"message"]) {
+                   NSInteger code=responses.statusCode;
+                      succeed = NO;
+                   requestError = [[NSError alloc] initWithDomain:[dicResp objectForKey:@"message"] code:code == 401 ? code :[[dicResp objectForKey:@"code"] intValue] userInfo:nil];;
+                 }
     }
   
     
