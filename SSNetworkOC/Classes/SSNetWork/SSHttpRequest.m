@@ -61,7 +61,7 @@
 //    统一参数    统一请求头   统一参数格式
 +(id)publickReqConfig:(id)parameters{
     [[SSNetManager sharedAgent] setRequestTimeoutInterval:SSDefautetimeoutInterval];
-//    [[SSNetManager sharedAgent] setRequestSerializer:SSRequestSerializerJSON];
+    [[SSNetManager sharedAgent] setRequestSerializer:SSRequestSerializerJSON];
     return parameters;
 }
 + (id)analyseResponseSuccess:(id)data{
@@ -119,7 +119,7 @@
     }
    
    
-      NetLog(@"\n**************************************\n网络 URL= %@ \n METHOD=%@ \n RESPONSE= %@\n**************************************",task.currentRequest.URL,task.currentRequest.HTTPMethod,[self jsonStringWithDictionary:dicResp]);
+      NetLog(@"\n**************************************\n网络 URL= %@ \n METHOD=%@ \n HEADER=%@ \n RESPONSE= %@\n**************************************",task.currentRequest.URL,task.currentRequest.HTTPMethod,task.currentRequest.allHTTPHeaderFields,[self jsonStringWithDictionary:dicResp]);
     
 }
 

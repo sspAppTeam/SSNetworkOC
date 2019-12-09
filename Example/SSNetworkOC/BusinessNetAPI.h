@@ -41,6 +41,12 @@ static NSString * const R_authservice_login = @"authservice/login";
      success:(SSRequestSuccess)success
      failure:(SSRequestFailure)failure;
 
++ (void)PUT:(NSString *)URLString
+parameters:(id)parameters
+   success:(SSRequestSuccess)success
+   failure:(SSRequestFailure)failure;
+
+
 
 @end
 

@@ -38,6 +38,12 @@ NSString *const kApiPrefix = @"http://47.110.125.71:8015/api/";
      failure:(SSRequestFailure)failure{
       [BusinessNetAPI requestHTTPMethod:SSRequestMethodPOST URLString:URLString parameters:parameters success:success failure:failure];
 }
++ (void)PUT:(NSString *)URLString
+  parameters:(id)parameters
+     success:(SSRequestSuccess)success
+     failure:(SSRequestFailure)failure{
+      [BusinessNetAPI requestHTTPMethod:SSRequestMethodPUT URLString:URLString parameters:parameters success:success failure:failure];
+}
 
 #pragma mark - 公共参数
 +(id)addPublicDic:(id)parameters{
@@ -53,8 +59,9 @@ NSString *const kApiPrefix = @"http://47.110.125.71:8015/api/";
 +(id)publickReqConfig:(id)parameters{
     [super publickReqConfig:parameters];
     [SSNetworkConfig sharedConfig].baseUrl=kApiPrefix;
+     [[SSNetManager sharedAgent] setRequestSerializer:SSRequestSerializerJSON];
     [[SSNetManager sharedAgent] setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [[SSNetManager sharedAgent] setRequestSerializer:SSRequestSerializerJSON];
+   
 //    NSString *token=kGlobalManager.loginUserInfo.Token;
 //    [[SSNetManager sharedAgent] setValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
    
