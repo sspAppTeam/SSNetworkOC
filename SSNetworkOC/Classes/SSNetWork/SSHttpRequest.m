@@ -82,12 +82,8 @@
     NSError *requestError = nil;
     BOOL succeed = YES;
     id dicResp = [self serializeJSONObject:responseObject error:&serializationError];
-//    NSString *code = [NSString stringWithFormat:@"%@",[dicResp valueForKey:[SSNetworkConfig sharedConfig].net_resp_code_key]];
-//    id data = [dicResp objectForKey:[SSNetworkConfig sharedConfig].net_resp_body_key];
-//    if (![code isEqualToString:[SSNetworkConfig sharedConfig].net_resp_succ_code]) {
-//        validationError=[[NSError alloc] initWithDomain:[code intValue] == 3?@"参数有误，参数为空":@"接口调用失败" code:[code intValue] userInfo:nil];
-//    }
     NSHTTPURLResponse *responses = (NSHTTPURLResponse *)task.response;
+    NSInteger code=responses.statusCode;
     
     if (serializationError) {
         succeed = NO;
@@ -96,30 +92,41 @@
         succeed = NO;
         requestError = validationError;
     }
-    if ([dicResp isKindOfClass:[NSArray class]]) {
+    if (code == 200) {
         
-    }else
-    {
-       if ([dicResp objectForKey:@"code"] && [dicResp objectForKey:@"message"]) {
-                   NSInteger code=responses.statusCode;
-                      succeed = NO;
-                   requestError = [[NSError alloc] initWithDomain:[dicResp objectForKey:@"message"] code:code == 401 ? code :[[dicResp objectForKey:@"code"] intValue] userInfo:nil];;
-                 }
+    }else{
+        if ([dicResp isKindOfClass:[NSArray class]]) {
+            
+        }else
+        {
+            if (([dicResp objectForKey:@"code"] || [dicResp objectForKey:@"status"] ) && [dicResp objectForKey:@"message"]) {
+                NSString *status=[dicResp objectForKey:@"code"];
+                if (status == nil || [status isEqualToString:@""] || [status isEqual:[NSNull null]] || [status isEqualToString:@"null"]) {
+                    status=[dicResp objectForKey:@"status"];
+                }
+                
+                
+                succeed = NO;
+                requestError = [[NSError alloc] initWithDomain:[dicResp objectForKey:@"message"] code:code == 401 ? code :[status intValue] userInfo:nil];;
+            }
+        }
+        
     }
-  
+    
+    
     
     id resultData;
     
     if (succeed) {
-      resultData = [self analyseResponseSuccess:dicResp];
+        resultData = [self analyseResponseSuccess:dicResp];
         success(resultData);
     } else {
-         resultData = [self analyseResponseFailure:requestError];
+        resultData = [self analyseResponseFailure:requestError];
         failure(resultData);
     }
-   
-   
-      NetLog(@"\n**************************************\n网络 URL= %@ \n METHOD=%@ \n HEADER=%@ \n RESPONSE= %@\n**************************************",task.currentRequest.URL,task.currentRequest.HTTPMethod,task.currentRequest.allHTTPHeaderFields,[self jsonStringWithDictionary:dicResp]);
+    
+    
+    NetLog(@"\n**************************************\n网络 URL= %@ \n METHOD=%@ \n HEADER=%@ \n RESPONSE= %@\n**************************************",task.currentRequest.URL,task.currentRequest.HTTPMethod,task.currentRequest.allHTTPHeaderFields,[self jsonStringWithDictionary:dicResp]);
     
 }
 
@@ -132,7 +139,7 @@
         errorString = [errorString isEqualToString:@""]?error.domain:errorString;
         
     }
-     id errorData = [self analyseResponseFailure:error];
+    id errorData = [self analyseResponseFailure:error];
     failure(errorData);
 }
 
@@ -162,7 +169,7 @@
     }
     
     return nil;
-
+    
 }
 
 @end
