@@ -50,6 +50,33 @@
             }];
         }
             break;
+        case SSRequestMethodPUT:
+        {
+            __block   NSURLSessionTask *dataTask =  [[SSNetManager sharedAgent] PUT:URLString parameters:parameters success:^(id  _Nullable responseObject) {
+                [self parseResponseData:dataTask response:responseObject success:success failure:failure];
+            } failure:^(NSError * _Nullable error) {
+                [self parseResponseFailed:error failure:failure];
+            }];
+        }
+            break;
+        case SSRequestMethodUpload:
+        {
+            NSMutableDictionary *param=[NSMutableDictionary dictionaryWithDictionary:parameters];
+            [param removeObjectForKey:@"uploadDic"];
+            NSDictionary *uploadDic=[parameters objectForKey:@"uploadDic"];
+            NSArray *imgs=[uploadDic objectForKey:@"images"];
+            NSArray *fileNames=[uploadDic objectForKey:@"fileNames"];
+            NSString *name=[uploadDic objectForKey:@"name"];
+            __block   NSURLSessionTask *dataTask = [[SSNetManager sharedAgent] uploadImagesWithURL:URLString parameters:parameters name:name images:imgs fileNames:fileNames imageScale:1 imageType:@"" progress:^(NSProgress * _Nonnull progress) {
+                
+            } success:^(id  _Nullable responseObject) {
+                [self parseResponseData:dataTask response:responseObject success:success failure:failure];
+            } failure:^(NSError * _Nullable error) {
+                [self parseResponseFailed:error failure:failure];
+            }];
+            
+        }
+            break;
             
         default:
             
