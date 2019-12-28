@@ -93,6 +93,14 @@
 - (void)setValue:(NSString *)value forHTTPHeaderField:(NSString *)field {
     [_manager.requestSerializer setValue:value forHTTPHeaderField:field];
 }
+//设置HTTPMethod的组合方式
+-(void)setSSHTTPMethodsEncodingParametersInURI:(NSSet<NSString *> *)SSHTTPMethodsEncodingParametersInURI{
+    if (SSHTTPMethodsEncodingParametersInURI) {
+    _manager.requestSerializer.HTTPMethodsEncodingParametersInURI=SSHTTPMethodsEncodingParametersInURI;
+     }else{
+         _manager.requestSerializer.HTTPMethodsEncodingParametersInURI=[NSSet setWithObjects:@"GET", @"HEAD", @"DELETE",@"PATCH", nil];
+     }
+}
 #pragma mark -
 - (__kindof NSURLSessionTask *)GET:(NSString *)URLString
                         parameters:(id)parameters

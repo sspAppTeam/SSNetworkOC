@@ -98,6 +98,7 @@
 +(id)publickReqConfig:(id)parameters{
     [[SSNetManager sharedAgent] setRequestTimeoutInterval:SSDefautetimeoutInterval];
     [[SSNetManager sharedAgent] setRequestSerializer:SSRequestSerializerJSON];
+    [[SSNetManager sharedAgent] setSSHTTPMethodsEncodingParametersInURI:nil];
     return parameters;
 }
 + (id)analyseResponseSuccess:(id)data{
