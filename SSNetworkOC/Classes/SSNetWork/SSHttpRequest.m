@@ -59,6 +59,15 @@
             }];
         }
             break;
+            case SSRequestMethodPATCH:
+            {
+                __block   NSURLSessionTask *dataTask =  [[SSNetManager sharedAgent] PATCH:URLString parameters:parameters success:^(id  _Nullable responseObject) {
+                    [self parseResponseData:dataTask response:responseObject success:success failure:failure];
+                } failure:^(NSError * _Nullable error) {
+                    [self parseResponseFailed:error failure:failure];
+                }];
+            }
+                break;
         case SSRequestMethodUpload:
         {
             NSMutableDictionary *param=[NSMutableDictionary dictionaryWithDictionary:parameters];

@@ -156,6 +156,23 @@
     
     
 }
+- (__kindof NSURLSessionTask *)PATCH:(NSString *)URLString
+                         parameters:(id)parameters
+                            success:(SSHttpRequestSuccess)success
+                            failure:(SSHttpRequestFailed)failure{
+    NSAssert(URLString, @"请求地址不能为空");
+    NetLog(@"\n****************PATCH**********************\n URL= %@  \n PARAM= %@\n*******************PATCH*******************",URLString,parameters);
+    NSURLSessionTask *sessionTask = [_manager PATCH:URLString parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+         success ? success(responseObject) : nil;
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure ? failure(error) : nil;
+    }];
+    
+    
+    return sessionTask;
+    
+    
+}
 
 - (__kindof NSURLSessionTask *)uploadFileWithURL:(NSString *)URLString
                                       parameters:(id)parameters

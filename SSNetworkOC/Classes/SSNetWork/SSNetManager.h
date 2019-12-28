@@ -92,6 +92,11 @@ NS_ASSUME_NONNULL_BEGIN
 parameters:(id)parameters
    success:(SSHttpRequestSuccess)success
                            failure:(SSHttpRequestFailed)failure;
+
+- (__kindof NSURLSessionTask *)PATCH:(NSString *)URLString
+parameters:(id)parameters
+   success:(SSHttpRequestSuccess)success
+                             failure:(SSHttpRequestFailed)failure;
 /**
  *  上传文件
  *
