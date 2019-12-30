@@ -210,6 +210,7 @@
     
 }
 
+
 - (__kindof NSURLSessionTask *)uploadImagesWithURL:(NSString *)URLString
                                         parameters:(id)parameters
                                               name:(NSString *)name
@@ -235,7 +236,7 @@
             
             [formData appendPartWithFileData:imageData
                                         name:name
-                                    fileName:fileNames ? NSStringFormat(@"%@.%@",fileNames[i],imageType?:@"jpg") : imageFileName
+                                    fileName:imageFileName
                                     mimeType:NSStringFormat(@"image/%@",imageType ?: @"jpg")];
         }
         
@@ -254,6 +255,7 @@
     return sessionTask;
     
 }
+
 #pragma mark - 下载文件
 - (NSURLSessionTask *)downloadWithURL:(NSString *)URL
                               fileDir:(NSString *)fileDir

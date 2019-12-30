@@ -74,7 +74,7 @@
             [param removeObjectForKey:@"uploadDic"];
             NSDictionary *uploadDic=[parameters objectForKey:@"uploadDic"];
             NSArray *imgs=[uploadDic objectForKey:@"images"];
-            NSArray *fileNames=[uploadDic objectForKey:@"fileNames"];
+            NSString *fileNames=[uploadDic objectForKey:@"fileNames"];
             NSString *name=[uploadDic objectForKey:@"name"];
             __block   NSURLSessionTask *dataTask = [[SSNetManager sharedAgent] uploadImagesWithURL:URLString parameters:parameters name:name images:imgs fileNames:fileNames imageScale:1 imageType:@"" progress:^(NSProgress * _Nonnull progress) {
                 
@@ -98,7 +98,6 @@
 +(id)publickReqConfig:(id)parameters{
     [[SSNetManager sharedAgent] setRequestTimeoutInterval:SSDefautetimeoutInterval];
     [[SSNetManager sharedAgent] setRequestSerializer:SSRequestSerializerJSON];
-    [[SSNetManager sharedAgent] setSSHTTPMethodsEncodingParametersInURI:nil];
     return parameters;
 }
 + (id)analyseResponseSuccess:(id)data{
