@@ -228,11 +228,17 @@
             // 图片经过等比压缩后得到的二进制文件
             NSData *imageData = UIImageJPEGRepresentation(images[i], imageScale ?: 1.f);
             // 默认图片的文件名, 若fileNames为nil就使用i
-            
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            formatter.dateFormat = @"yyyyMMddHHmmss";
-            NSString *str = [formatter stringFromDate:[NSDate date]];
-            NSString *imageFileName = NSStringFormat(@"%@%i.%@",str,i,imageType?:@"jpg");
+             NSString*imageFileName=@"";
+            if (fileNames.count==images.count) {
+                imageFileName=[fileNames objectAtIndex:i];
+            }else{
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                           formatter.dateFormat = @"yyyyMMddHHmmss";
+                           NSString *str = [formatter stringFromDate:[NSDate date]];
+                          imageFileName = NSStringFormat(@"%@%@.%@",str,[[NSUUID UUID] UUIDString].lowercaseString,[imageType isEqualToString:@""]?@"jpg":imageType);
+            }
+           
+           
             
             [formData appendPartWithFileData:imageData
                                         name:name

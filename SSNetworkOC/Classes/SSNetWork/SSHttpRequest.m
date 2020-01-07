@@ -59,22 +59,22 @@
             }];
         }
             break;
-            case SSRequestMethodPATCH:
-            {
-                __block   NSURLSessionTask *dataTask =  [[SSNetManager sharedAgent] PATCH:URLString parameters:parameters success:^(id  _Nullable responseObject) {
-                    [self parseResponseData:dataTask response:responseObject success:success failure:failure];
-                } failure:^(NSError * _Nullable error) {
-                    [self parseResponseFailed:error failure:failure];
-                }];
-            }
-                break;
+        case SSRequestMethodPATCH:
+        {
+            __block   NSURLSessionTask *dataTask =  [[SSNetManager sharedAgent] PATCH:URLString parameters:parameters success:^(id  _Nullable responseObject) {
+                [self parseResponseData:dataTask response:responseObject success:success failure:failure];
+            } failure:^(NSError * _Nullable error) {
+                [self parseResponseFailed:error failure:failure];
+            }];
+        }
+            break;
         case SSRequestMethodUpload:
         {
             NSMutableDictionary *param=[NSMutableDictionary dictionaryWithDictionary:parameters];
             [param removeObjectForKey:@"uploadDic"];
             NSDictionary *uploadDic=[parameters objectForKey:@"uploadDic"];
             NSArray *imgs=[uploadDic objectForKey:@"images"];
-            NSString *fileNames=[uploadDic objectForKey:@"fileNames"];
+            NSArray *fileNames=[uploadDic objectForKey:@"fileNames"];
             NSString *name=[uploadDic objectForKey:@"name"];
             __block   NSURLSessionTask *dataTask = [[SSNetManager sharedAgent] uploadImagesWithURL:URLString parameters:parameters name:name images:imgs fileNames:fileNames imageScale:1 imageType:@"" progress:^(NSProgress * _Nonnull progress) {
                 
