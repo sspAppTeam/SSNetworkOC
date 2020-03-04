@@ -44,6 +44,26 @@ NSString *const kApiPrefix = @"http://47.110.125.71:8015/api/";
      failure:(SSRequestFailure)failure{
       [BusinessNetAPI requestHTTPMethod:SSRequestMethodPUT URLString:URLString parameters:parameters success:success failure:failure];
 }
++ (void)PATCH:(NSString *)URLString
+parameters:(id)parameters
+   success:(SSRequestSuccess)success
+      failure:(SSRequestFailure)failure{
+  
+      [BusinessNetAPI requestHTTPMethod:SSRequestMethodPATCH URLString:URLString parameters:parameters success:success failure:failure];
+}
++ (void)UploadImgs:(NSString *)URLString
+  parameters:(id)parameters
+     success:(SSRequestSuccess)success
+     failure:(SSRequestFailure)failure{
+    
+      [BusinessNetAPI requestHTTPMethod:SSRequestMethodUpload URLString:URLString parameters:parameters success:success failure:failure];
+}
+
++ (void)downloadFile:(NSString *)URLString
+   success:(SSRequestSuccess)success
+             failure:(SSRequestFailure)failure{
+    [BusinessNetAPI requestHTTPMethod:SSRequestMethodDownload URLString:URLString parameters:@{} success:success failure:failure];
+}
 
 #pragma mark - 公共参数
 +(id)addPublicDic:(id)parameters{
@@ -58,6 +78,7 @@ NSString *const kApiPrefix = @"http://47.110.125.71:8015/api/";
 //    统一参数    统一请求头   统一参数格式
 +(id)publickReqConfig:(id)parameters{
     [super publickReqConfig:parameters];
+//    动态获取ip的话，在这第一次变更会有问题
     [SSNetworkConfig sharedConfig].baseUrl=kApiPrefix;
      [[SSNetManager sharedAgent] setRequestSerializer:SSRequestSerializerJSON];
     [[SSNetManager sharedAgent] setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];

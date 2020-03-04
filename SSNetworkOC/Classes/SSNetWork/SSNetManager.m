@@ -96,7 +96,7 @@
 //设置HTTPMethod的组合方式
 -(void)setSSHTTPMethodsEncodingParametersInURI:(NSSet<NSString *> *)SSHTTPMethodsEncodingParametersInURI{
     if (SSHTTPMethodsEncodingParametersInURI) {
-    _manager.requestSerializer.HTTPMethodsEncodingParametersInURI=SSHTTPMethodsEncodingParametersInURI;
+_manager.requestSerializer.HTTPMethodsEncodingParametersInURI=SSHTTPMethodsEncodingParametersInURI;
      }else{
          _manager.requestSerializer.HTTPMethodsEncodingParametersInURI=[NSSet setWithObjects:@"GET", @"HEAD", @"DELETE",@"PATCH", nil];
      }
@@ -148,17 +148,11 @@
                             failure:(SSHttpRequestFailed)failure{
     NSAssert(URLString, @"请求地址不能为空");
     NetLog(@"\n****************PUT**********************\n URL= %@  \n PARAM= %@\n*******************PUT*******************",URLString,parameters);
-    NSURLSessionTask *sessionTask = [_manager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        success ? success(responseObject) : nil;
-        
+    NSURLSessionTask *sessionTask = [_manager PUT:URLString parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+         success ? success(responseObject) : nil;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        failure ? failure(error) : nil;
-        
+         failure ? failure(error) : nil;
     }];
-    
     
     return sessionTask;
     

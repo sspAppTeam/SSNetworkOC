@@ -28,6 +28,7 @@
     parameters =[self publickReqConfig:parameters];
     //    针对url已经是请求地址的情况如：激活码
     URLString =  [URLString hasPrefix:@"http:"]?URLString:[[SSNetworkConfig sharedConfig].baseUrl stringByAppendingString:URLString];
+    URLString =  [URLString hasPrefix:@"https:"]?URLString:[[SSNetworkConfig sharedConfig].baseUrl stringByAppendingString:URLString];
     
     URLString = [URLString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
@@ -83,6 +84,19 @@
             } failure:^(NSError * _Nullable error) {
                 [self parseResponseFailed:error failure:failure];
             }];
+            
+        }
+            break;
+        case SSRequestMethodDownload:
+        {
+            __block   NSURLSessionTask *dataTask = [[SSNetManager sharedAgent] downloadWithURL:URLString fileDir:@"app/Down" progress:^(NSProgress * _Nonnull progress) {
+                
+            } success:^(NSString * _Nonnull filePath) {
+                 [self parseResponseData:dataTask response:filePath success:success failure:failure];
+            } failure:^(NSError * _Nullable error) {
+                 [self parseResponseFailed:error failure:failure];
+            }];
+            
             
         }
             break;

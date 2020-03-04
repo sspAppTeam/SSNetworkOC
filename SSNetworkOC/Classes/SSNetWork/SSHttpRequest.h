@@ -16,6 +16,7 @@ typedef NS_ENUM(NSInteger, SSRequestMethod) {
     SSRequestMethodDELETE,
     SSRequestMethodPATCH,
     SSRequestMethodUpload,
+    SSRequestMethodDownload
 };
 
 typedef void(^SSRequestSuccess)(id _Nullable response);
