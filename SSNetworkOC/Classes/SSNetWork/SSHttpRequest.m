@@ -149,7 +149,7 @@
             
         }else
         {
-            if (([dicResp objectForKey:@"code"] || [dicResp objectForKey:@"status"] ) && [dicResp objectForKey:@"message"]) {
+            if (([dicResp objectForKey:@"code"] || [dicResp objectForKey:@"status"] ) || [dicResp objectForKey:@"message"]) {
                 NSString *status=[dicResp objectForKey:@"code"];
                 if (status == nil || [status isEqualToString:@""] || [status isEqual:[NSNull null]] || [status isEqualToString:@"null"]) {
                     status=[dicResp objectForKey:@"status"];
