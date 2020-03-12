@@ -27,8 +27,7 @@
     NSAssert([SSNetworkConfig sharedConfig].baseUrl, @"请求地址不能为空");
     parameters =[self publickReqConfig:parameters];
     //    针对url已经是请求地址的情况如：激活码
-    URLString =  [URLString hasPrefix:@"http:"]?URLString:[[SSNetworkConfig sharedConfig].baseUrl stringByAppendingString:URLString];
-    URLString =  [URLString hasPrefix:@"https:"]?URLString:[[SSNetworkConfig sharedConfig].baseUrl stringByAppendingString:URLString];
+    URLString =  [URLString hasPrefix:@"http"]?URLString:[[SSNetworkConfig sharedConfig].baseUrl stringByAppendingString:URLString];
     
     URLString = [URLString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
