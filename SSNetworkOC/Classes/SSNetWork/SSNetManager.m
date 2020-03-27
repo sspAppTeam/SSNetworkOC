@@ -293,6 +293,9 @@ _manager.requestSerializer.HTTPMethodsEncodingParametersInURI=SSHTTPMethodsEncod
     return downloadTask;
 }
 -(NSString *)jsonString:(id)para{
+    if (para == nil || [para isEqual:[NSNull null]] ) {
+        return @"";
+    }
 NSData *jsonData = [NSJSONSerialization dataWithJSONObject:para options:0 error:0];
 NSString *dataStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     return dataStr;
