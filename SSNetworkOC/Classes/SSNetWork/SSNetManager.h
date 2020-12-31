@@ -49,6 +49,7 @@ typedef void(^SSNetworkStatus)(SSNetworkStatusType status);
 NS_ASSUME_NONNULL_BEGIN
 @interface SSNetManager : NSObject
 @property (nonatomic, strong) NSSet <NSString *> * _Nullable SSHTTPMethodsEncodingParametersInURI;
+@property (nonatomic,strong)NSDictionary <NSString *, NSString *> *myHTTPRequestHeaders;
 + (SSNetManager *)sharedAgent;
 
 /// 实时获取网络状态,通过Block回调实时获取(此方法可多次调用)

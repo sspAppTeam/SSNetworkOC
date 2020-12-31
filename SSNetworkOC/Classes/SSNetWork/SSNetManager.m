@@ -46,10 +46,12 @@
         _manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         _manager.responseSerializer.acceptableStatusCodes = _allStatusCodes;
 //        _manager.completionQueue = _processingQueue;
+        _myHTTPRequestHeaders=[NSDictionary dictionary];
         
     }
     return self;
 }
+
 
 
 #pragma mark - 开始监听网络
@@ -108,14 +110,14 @@ _manager.requestSerializer.HTTPMethodsEncodingParametersInURI=SSHTTPMethodsEncod
                            failure:(SSHttpRequestFailed)failure{
     NSAssert(URLString, @"请求地址不能为空");
      NetLog(@"\n****************GET**********************\n URL= %@  \n PARAM= %@\n*******************GET*******************",URLString,[self jsonString:parameters]);
-    NSURLSessionTask *sessionTask = [_manager GET:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    NSURLSessionTask *sessionTask = [_manager GET:URLString parameters:parameters headers:self.myHTTPRequestHeaders progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         success ? success(responseObject) : nil;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure ? failure(error) : nil;
-        
     }];
+   
     return sessionTask;
     
 }
@@ -126,7 +128,7 @@ _manager.requestSerializer.HTTPMethodsEncodingParametersInURI=SSHTTPMethodsEncod
                             failure:(SSHttpRequestFailed)failure{
     NSAssert(URLString, @"请求地址不能为空");
     NetLog(@"\n****************POST**********************\n URL= %@  \n PARAM= %@\n*******************POST*******************",URLString,[self jsonString:parameters]);
-    NSURLSessionTask *sessionTask = [_manager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    NSURLSessionTask *sessionTask = [_manager  POST:URLString parameters:parameters headers:self.myHTTPRequestHeaders progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -148,7 +150,7 @@ _manager.requestSerializer.HTTPMethodsEncodingParametersInURI=SSHTTPMethodsEncod
                             failure:(SSHttpRequestFailed)failure{
     NSAssert(URLString, @"请求地址不能为空");
     NetLog(@"\n****************PUT**********************\n URL= %@  \n PARAM= %@\n*******************PUT*******************",URLString,[self jsonString:parameters]);
-    NSURLSessionTask *sessionTask = [_manager PUT:URLString parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionTask *sessionTask = [_manager PUT:URLString parameters:parameters headers:self.myHTTPRequestHeaders success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
          success ? success(responseObject) : nil;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
          failure ? failure(error) : nil;
@@ -164,7 +166,7 @@ _manager.requestSerializer.HTTPMethodsEncodingParametersInURI=SSHTTPMethodsEncod
                             failure:(SSHttpRequestFailed)failure{
     NSAssert(URLString, @"请求地址不能为空");
     NetLog(@"\n****************PATCH**********************\n URL= %@  \n PARAM= %@\n*******************PATCH*******************",URLString,[self jsonString:parameters]);
-    NSURLSessionTask *sessionTask = [_manager PATCH:URLString parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionTask *sessionTask = [_manager PATCH:URLString parameters:parameters headers:self.myHTTPRequestHeaders success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
          success ? success(responseObject) : nil;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure ? failure(error) : nil;
@@ -183,7 +185,7 @@ _manager.requestSerializer.HTTPMethodsEncodingParametersInURI=SSHTTPMethodsEncod
                                         progress:(SSHttpProgress)progress
                                          success:(SSHttpRequestSuccess)success
                                          failure:(SSHttpRequestFailed)failure{
-    NSURLSessionTask *sessionTask = [_manager POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    NSURLSessionTask *sessionTask = [_manager POST:URLString parameters:parameters headers:self.myHTTPRequestHeaders constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
          NSAssert(URLString, @"请求地址不能为空");
         NSError *error = nil;
         [formData appendPartWithFileURL:[NSURL URLWithString:filePath] name:name error:&error];
@@ -217,7 +219,7 @@ _manager.requestSerializer.HTTPMethodsEncodingParametersInURI=SSHTTPMethodsEncod
                                            failure:(SSHttpRequestFailed)failure{
     
      NSAssert(URLString, @"请求地址不能为空");
-    NSURLSessionTask *sessionTask = [_manager POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    NSURLSessionTask *sessionTask = [_manager POST:URLString parameters:parameters headers:self.myHTTPRequestHeaders constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         for (int i = 0; i < images.count; i++) {
             // 图片经过等比压缩后得到的二进制文件
             NSData *imageData = UIImageJPEGRepresentation(images[i], imageScale ?: 1.f);
