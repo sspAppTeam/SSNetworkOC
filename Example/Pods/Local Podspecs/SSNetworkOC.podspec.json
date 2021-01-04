@@ -1,6 +1,6 @@
 {
   "name": "SSNetworkOC",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "summary": "基于AFN封装的网络库",
   "description": "基于AFNetworking封装的网络库",
   "homepage": "https://github.com/sspAppTeam/SSNetworkOC",
@@ -13,10 +13,10 @@
   },
   "source": {
     "git": "https://github.com/sspAppTeam/SSNetworkOC.git",
-    "tag": "0.2.6"
+    "tag": "0.2.7"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
   "source_files": "SSNetworkOC/Classes/**/*",
   "dependencies": {

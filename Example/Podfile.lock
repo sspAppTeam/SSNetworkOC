@@ -20,7 +20,7 @@ PODS:
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
   - Kiwi (3.0.0)
-  - SSNetworkOC (0.2.6):
+  - SSNetworkOC (0.2.7):
     - AFNetworking
 
 DEPENDENCIES:
@@ -43,7 +43,7 @@ SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
-  SSNetworkOC: e5d97e21ebb2df221c0a2a7dd3f62e77170a7a6e
+  SSNetworkOC: fe772f981d8be7ac1b0e72d54b9a681374a9c546
 
 PODFILE CHECKSUM: fb8e6ee229d3cea0fbce03f0a19f7a3bf3d6b945
 
